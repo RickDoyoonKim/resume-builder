@@ -1,0 +1,23 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* 전체 요소의 마진과 패딩을 제거 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden; /* 가로 스크롤바 제거 */
+}
+
+.container {
+  width: 100%;
+  max-width: 100%;
+  padding: 0 20px;
+  margin: 0 auto;
+}

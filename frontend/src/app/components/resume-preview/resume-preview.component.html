@@ -1,0 +1,109 @@
+<div class="resume-preview-container">
+  <div class="resume-paper" *ngIf="resume">
+    <!-- Header: Name and Title -->
+    <header class="resume-header">
+      <h1 class="resume-name">{{ resume.personalInfo.fullName }}</h1>
+      <h2 class="resume-title">{{ resume.personalInfo.jobTitle }}</h2>
+    </header>
+
+    <!-- Contact Information -->
+    <section class="contact-info">
+      <div class="contact-item" *ngIf="resume.personalInfo.email">
+        <i class="fas fa-envelope"></i>
+        <span>{{ resume.personalInfo.email }}</span>
+      </div>
+      <div class="contact-item" *ngIf="resume.personalInfo.phone">
+        <i class="fas fa-phone"></i>
+        <span>{{ resume.personalInfo.phone }}</span>
+      </div>
+      <div class="contact-item" *ngIf="resume.personalInfo.address">
+        <i class="fas fa-map-marker-alt"></i>
+        <span>{{ resume.personalInfo.address }}</span>
+      </div>
+    </section>
+
+    <!-- Summary -->
+    <section class="resume-section" *ngIf="resume.personalInfo.summary">
+      <h3 class="section-title">Profile Summary</h3>
+      <div class="section-content">
+        <p class="summary-text">{{ resume.personalInfo.summary }}</p>
+      </div>
+    </section>
+
+    <!-- Work Experience -->
+    <section class="resume-section" *ngIf="resume.workExperience && resume.workExperience.length > 0">
+      <h3 class="section-title">Work Experience</h3>
+      <div class="section-content">
+        <div class="experience-item" *ngFor="let exp of resume.workExperience">
+          <div class="item-header">
+            <h4 class="company-name">{{ exp.company }}</h4>
+            <div class="date-range">
+              {{ formatDate(exp.startDate) }} - {{ exp.isCurrentJob ? 'Present' : formatDate(exp.endDate) }}
+            </div>
+          </div>
+          <div class="position">{{ exp.position }}</div>
+          <p class="description">{{ exp.description }}</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section class="resume-section" *ngIf="resume.education && resume.education.length > 0">
+      <h3 class="section-title">Education</h3>
+      <div class="section-content">
+        <div class="education-item" *ngFor="let edu of resume.education">
+          <div class="item-header">
+            <h4 class="institution-name">{{ edu.institution }}</h4>
+            <div class="date-range">
+              {{ formatDate(edu.graduationDate) }}
+            </div>
+          </div>
+          <div class="degree">{{ edu.degree }} - {{ edu.field }}</div>
+          <div class="gpa" *ngIf="edu.gpa">GPA: {{ edu.gpa }}</div>
+          <p class="description" *ngIf="edu.description">{{ edu.description }}</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section class="resume-section" *ngIf="resume.skills && resume.skills.length > 0">
+      <h3 class="section-title">Skills</h3>
+      <div class="section-content">
+        <div class="skills-grid">
+          <div class="skill-item" *ngFor="let skill of resume.skills">
+            <div class="skill-name">{{ skill.name }}</div>
+            <div class="skill-level">
+              <span class="skill-dot filled" *ngFor="let _ of getSkillLevelArray(skill.level)"></span>
+              <span class="skill-dot empty" *ngFor="let _ of getEmptySkillLevelArray(skill.level)"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section class="resume-section" *ngIf="resume.projects && resume.projects.length > 0">
+      <h3 class="section-title">Projects</h3>
+      <div class="section-content">
+        <div class="project-item" *ngFor="let project of resume.projects">
+          <div class="item-header">
+            <h4 class="project-title">{{ project.title }}</h4>
+            <div class="date-range" *ngIf="project.startDate">
+              {{ formatDate(project.startDate) }} - {{ project.endDate ? formatDate(project.endDate) : 'Present' }}
+            </div>
+          </div>
+          <div class="technologies" *ngIf="project.technologies">Technologies: {{ project.technologies }}</div>
+          <p class="description">{{ project.description }}</p>
+          <a [href]="project.url" target="_blank" class="project-link" *ngIf="project.url">Project Link</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- PDF Export Button -->
+  <app-export-pdf *ngIf="resume"></app-export-pdf>
+
+  <div class="empty-resume" *ngIf="!resume">
+    <p>No resume information available. Please fill out the form.</p>
+  </div>
+</div>

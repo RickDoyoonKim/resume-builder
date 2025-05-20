@@ -1,0 +1,228 @@
+<div class="resume-form-container">
+  <h2>Create Your Resume</h2>
+  
+  <form [formGroup]="resumeForm" (ngSubmit)="saveResume()">
+    <!-- Personal Information Section -->
+    <div class="form-section">
+      <h3>Personal Information</h3>
+      <div formGroupName="personalInfo" class="form-group-container">
+        <div class="form-group">
+          <label for="fullName">Full Name</label>
+          <input type="text" id="fullName" formControlName="fullName" placeholder="John Doe">
+          <div *ngIf="personalInfo.get('fullName')?.invalid && personalInfo.get('fullName')?.touched" class="error-message">
+            Full name is required
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="jobTitle">Job Title</label>
+          <input type="text" id="jobTitle" formControlName="jobTitle" placeholder="Software Engineer">
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" formControlName="email" placeholder="john.doe@example.com">
+            <div *ngIf="personalInfo.get('email')?.invalid && personalInfo.get('email')?.touched" class="error-message">
+              Please enter a valid email
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" formControlName="phone" placeholder="(123) 456-7890">
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="address">Address</label>
+          <input type="text" id="address" formControlName="address" placeholder="City, State">
+        </div>
+        
+        <div class="form-group">
+          <label for="summary">Professional Summary</label>
+          <textarea id="summary" formControlName="summary" placeholder="Brief summary of your experience and skills" rows="3"></textarea>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Work Experience Section -->
+    <div class="form-section">
+      <div class="section-header">
+        <h3>Work Experience</h3>
+        <button type="button" class="add-button" (click)="addWorkExperience()">Add Experience</button>
+      </div>
+      
+      <div formArrayName="workExperience">
+        <div *ngFor="let job of workExperienceArray.controls; let i = index" [formGroupName]="i" class="form-group-container">
+          <div class="form-header">
+            <h4>Position {{i + 1}}</h4>
+            <button type="button" class="remove-button" (click)="removeWorkExperience(i)">&times;</button>
+          </div>
+          
+          <div class="form-group">
+            <label for="company-{{i}}">Company</label>
+            <input type="text" id="company-{{i}}" formControlName="company" placeholder="Company Name">
+          </div>
+          
+          <div class="form-group">
+            <label for="position-{{i}}">Position</label>
+            <input type="text" id="position-{{i}}" formControlName="position" placeholder="Job Title">
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="startDate-{{i}}">Start Date</label>
+              <input type="month" id="startDate-{{i}}" formControlName="startDate">
+            </div>
+            
+            <div class="form-group" *ngIf="!job.get('isCurrentJob')?.value">
+              <label for="endDate-{{i}}">End Date</label>
+              <input type="month" id="endDate-{{i}}" formControlName="endDate">
+            </div>
+            
+            <div class="form-group checkbox">
+              <input type="checkbox" id="isCurrentJob-{{i}}" formControlName="isCurrentJob">
+              <label for="isCurrentJob-{{i}}">Current Job</label>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="description-{{i}}">Description</label>
+            <textarea id="description-{{i}}" formControlName="description" placeholder="Describe your responsibilities and achievements" rows="3"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Education Section -->
+    <div class="form-section">
+      <div class="section-header">
+        <h3>Education</h3>
+        <button type="button" class="add-button" (click)="addEducation()">Add Education</button>
+      </div>
+      
+      <div formArrayName="education">
+        <div *ngFor="let edu of educationArray.controls; let i = index" [formGroupName]="i" class="form-group-container">
+          <div class="form-header">
+            <h4>Education {{i + 1}}</h4>
+            <button type="button" class="remove-button" (click)="removeEducation(i)">&times;</button>
+          </div>
+          
+          <div class="form-group">
+            <label for="institution-{{i}}">Institution</label>
+            <input type="text" id="institution-{{i}}" formControlName="institution" placeholder="University Name">
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="degree-{{i}}">Degree</label>
+              <input type="text" id="degree-{{i}}" formControlName="degree" placeholder="Bachelor's, Master's, etc.">
+            </div>
+            
+            <div class="form-group">
+              <label for="field-{{i}}">Field of Study</label>
+              <input type="text" id="field-{{i}}" formControlName="field" placeholder="Computer Science">
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="graduationDate-{{i}}">Graduation Date</label>
+              <input type="month" id="graduationDate-{{i}}" formControlName="graduationDate">
+            </div>
+            
+            <div class="form-group">
+              <label for="gpa-{{i}}">GPA (optional)</label>
+              <input type="text" id="gpa-{{i}}" formControlName="gpa" placeholder="3.8/4.0">
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="edu-description-{{i}}">Description (optional)</label>
+            <textarea id="edu-description-{{i}}" formControlName="description" placeholder="Relevant coursework, honors, etc." rows="2"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Skills Section -->
+    <div class="form-section">
+      <div class="section-header">
+        <h3>Skills</h3>
+        <button type="button" class="add-button" (click)="addSkill()">Add Skill</button>
+      </div>
+      
+      <div formArrayName="skills">
+        <div *ngFor="let skill of skillsArray.controls; let i = index" [formGroupName]="i" class="form-group-container skill-row">
+          <div class="form-group">
+            <label for="skill-{{i}}">Skill</label>
+            <input type="text" id="skill-{{i}}" formControlName="name" placeholder="Programming Language, Tool, etc.">
+          </div>
+          
+          <div class="form-group skill-level">
+            <label for="level-{{i}}">Proficiency Level (1-5)</label>
+            <input type="range" id="level-{{i}}" formControlName="level" min="1" max="5" step="1">
+            <span>{{skill.get('level')?.value}}/5</span>
+          </div>
+          
+          <button type="button" class="remove-button" (click)="removeSkill(i)">&times;</button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Projects Section -->
+    <div class="form-section">
+      <div class="section-header">
+        <h3>Projects</h3>
+        <button type="button" class="add-button" (click)="addProject()">Add Project</button>
+      </div>
+      
+      <div formArrayName="projects">
+        <div *ngFor="let project of projectsArray.controls; let i = index" [formGroupName]="i" class="form-group-container">
+          <div class="form-header">
+            <h4>Project {{i + 1}}</h4>
+            <button type="button" class="remove-button" (click)="removeProject(i)">&times;</button>
+          </div>
+          
+          <div class="form-group">
+            <label for="title-{{i}}">Project Title</label>
+            <input type="text" id="title-{{i}}" formControlName="title" placeholder="Project Name">
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="project-startDate-{{i}}">Start Date (optional)</label>
+              <input type="month" id="project-startDate-{{i}}" formControlName="startDate">
+            </div>
+            
+            <div class="form-group">
+              <label for="project-endDate-{{i}}">End Date (optional)</label>
+              <input type="month" id="project-endDate-{{i}}" formControlName="endDate">
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="technologies-{{i}}">Technologies Used (optional)</label>
+            <input type="text" id="technologies-{{i}}" formControlName="technologies" placeholder="React, Node.js, MongoDB, etc.">
+          </div>
+          
+          <div class="form-group">
+            <label for="url-{{i}}">Project URL (optional)</label>
+            <input type="url" id="url-{{i}}" formControlName="url" placeholder="https://example.com">
+          </div>
+          
+          <div class="form-group">
+            <label for="project-description-{{i}}">Description</label>
+            <textarea id="project-description-{{i}}" formControlName="description" placeholder="Describe the project, your role, and outcomes" rows="3"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="button-container">
+      <button type="button" class="reset-button" (click)="resetForm()">Reset Form</button>
+      <button type="submit" class="save-button" [disabled]="resumeForm.invalid">Save Resume</button>
+    </div>
+  </form>
+</div>

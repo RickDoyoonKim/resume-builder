@@ -1,0 +1,60 @@
+# Overview
+This project is a Resume Builder web application targeting experienced IT professionals (myself as the primary user). The main value is the ability to quickly generate a company-tailored resume using my existing career data, providing a more customized and efficient experience than services like Indeed.
+
+# Core Features
+- Resume creation using Angular Reactive Forms (fields: Full Name, Job Title, Summary, Work Experience, Education, Skills, Projects)
+- Live preview of the resume as the user types (best UI/UX style to be chosen by the developer)
+- Export resume as a styled PDF (single modern template, but extensible)
+- Support for file attachments (e.g., images, portfolio links) in experience/project sections
+- English-only resume support (no multi-language)
+- Anonymous usage (no login/signup required)
+- Responsive UI for desktop, tablet, and mobile (portfolio-grade design)
+- (Optional) Autosave/draft feature if technically feasible
+
+# User Experience
+- Target user: Experienced IT professional
+- User flow: Enter resume data → see live preview → export as PDF
+- Preview style: Developer will select the most effective and modern approach (e.g., card or PDF-like preview)
+- Responsive design is mandatory (portfolio showcase)
+- Autosave is nice-to-have, but not required if complex
+
+# Technical Architecture
+- Frontend: Angular (with Angular Material for UI components)
+- Backend: Spring Boot (Java)
+- PDF generation: Use the easiest and most reliable Java library (iText or OpenPDF)
+- Backend database: Embedded (H2), no external DB required
+- API endpoints:
+  - POST /api/resume/pdf (accepts resume JSON, returns PDF)
+  - POST /api/resume/save (optional, for draft/autosave)
+  - GET /api/resume/:id (optional, for loading saved resumes)
+- Deployment: Local environment (no cloud required)
+- CORS enabled for local Angular development
+
+# Development Roadmap
+## MVP
+- Resume input form (all required fields)
+- Live preview
+- PDF export
+- Responsive UI
+- File attachment support
+
+## Future Enhancements
+- AI-powered resume rewriting to match specific job descriptions
+- AI auto-completion for resume sections
+- (Optional) Resume sharing, recommendation letter attachment
+
+# Logical Dependency Chain
+- Set up project structure (frontend/backend separation)
+- Implement resume form and preview (core UI/UX)
+- Add PDF export functionality
+- Add file attachment support
+- (Optional) Implement autosave
+- (Future) Integrate AI features for resume rewriting and auto-completion
+
+# Risks and Mitigations
+- Main technical risk: AI API key failures or integration issues (for future AI features)
+- Mitigation: Ensure robust error handling and clear user feedback for API errors
+
+# Appendix
+- All code, instructions, and comments will be in English
+- The app will serve as a portfolio-quality project 

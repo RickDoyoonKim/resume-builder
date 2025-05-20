@@ -1,0 +1,10 @@
+com\resumebuilder\api\model\Resume.class
+com\resumebuilder\api\config\WebConfig.class
+com\resumebuilder\api\model\PersonalInfo.class
+com\resumebuilder\api\model\Project.class
+com\resumebuilder\api\Application.class
+com\resumebuilder\api\controller\ResumeController.class
+com\resumebuilder\api\model\Education.class
+com\resumebuilder\api\model\Skill.class
+com\resumebuilder\api\service\PdfGenerationService.class
+com\resumebuilder\api\model\WorkExperience.class

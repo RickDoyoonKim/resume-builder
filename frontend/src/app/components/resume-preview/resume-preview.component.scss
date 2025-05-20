@@ -1,0 +1,214 @@
+.resume-preview-container {
+  padding: 20px;
+  box-sizing: border-box;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.resume-paper {
+  background-color: white;
+  padding: 40px;
+  margin: 0 auto;
+  max-width: 800px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  min-height: 842px;
+  box-sizing: border-box;
+  font-family: 'Noto Sans KR', Arial, sans-serif;
+  color: #333;
+}
+
+// Header styles
+.resume-header {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #3498db;
+  text-align: center;
+}
+
+.resume-name {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0;
+  color: #2c3e50;
+}
+
+.resume-title {
+  font-size: 18px;
+  font-weight: 400;
+  margin: 8px 0 0;
+  color: #3498db;
+}
+
+// Contact information
+.contact-info {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 25px;
+  column-gap: 20px;
+  row-gap: 10px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  
+  i {
+    margin-right: 8px;
+    color: #3498db;
+  }
+}
+
+// Section styles
+.resume-section {
+  margin-bottom: 25px;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 15px;
+  color: #2c3e50;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+// Experience items
+.experience-item, .education-item, .project-item {
+  margin-bottom: 20px;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 5px;
+}
+
+.company-name, .institution-name, .project-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+  color: #34495e;
+}
+
+.date-range {
+  font-size: 14px;
+  color: #7f8c8d;
+  white-space: nowrap;
+}
+
+.position, .degree {
+  font-size: 15px;
+  font-weight: 500;
+  color: #3498db;
+  margin-bottom: 5px;
+}
+
+.description {
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 5px 0 0;
+  color: #555;
+  white-space: pre-line;
+}
+
+// Skill styles
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+.skill-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.skill-name {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.skill-level {
+  display: flex;
+  gap: 2px;
+}
+
+.skill-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  
+  &.filled {
+    background-color: #3498db;
+  }
+  
+  &.empty {
+    background-color: #e0e0e0;
+  }
+}
+
+// Empty resume state
+.empty-resume {
+  text-align: center;
+  color: #7f8c8d;
+  padding: 30px;
+  font-size: 16px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  margin-top: 30px;
+}
+
+// Project styles
+.technologies {
+  font-size: 14px;
+  color: #7f8c8d;
+  margin-bottom: 5px;
+}
+
+.project-link {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 14px;
+  color: #3498db;
+  text-decoration: none;
+  
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+// Responsive styles
+@media (max-width: 768px) {
+  .resume-paper {
+    padding: 20px;
+  }
+  
+  .resume-name {
+    font-size: 24px;
+  }
+  
+  .resume-title {
+    font-size: 16px;
+  }
+  
+  .item-header {
+    flex-direction: column;
+  }
+  
+  .date-range {
+    margin-top: 3px;
+  }
+  
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,15 @@
+<div class="export-pdf-container">
+  <button 
+    class="export-btn" 
+    [class.loading]="isExporting" 
+    [disabled]="isExporting"
+    (click)="exportPdf()">
+    <i class="fas fa-file-pdf"></i>
+    <span *ngIf="!isExporting">Export as PDF</span>
+    <span *ngIf="isExporting">Generating...</span>
+  </button>
+  
+  <div class="error-message" *ngIf="errorMessage">
+    {{ errorMessage }}
+  </div>
+</div>
